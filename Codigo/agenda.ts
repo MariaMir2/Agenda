@@ -1,4 +1,5 @@
 import {persona} from './persona';
+
 export class agenda {
     private agenda: Array<persona>;
 

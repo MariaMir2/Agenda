@@ -1,3 +1,7 @@
+import { direccion } from "./direccion";
+import { mail } from "./mail";
+import { telefono } from "./telefono";
+
 export class persona{
 
     //Declaramos los atributos de la clase Persona
@@ -8,9 +12,9 @@ export class persona{
     private cumpleanyos: Date;
     private colorFavorito: string;
     private sexo: string;
-    private direcciones: string[];
-    private mails: string[];
-    private telefonos: number[];
+    private direcciones: direccion[];
+    private mails: mail[];
+    private telefonos: telefono[];
     private notas: string[];
 
     //Constructor
@@ -87,27 +91,27 @@ export class persona{
         this.sexo = sexo;
     }
 
-    public getDirecciones(): string[] {
+    public getDirecciones(): direccion[] {
         return this.direcciones;
     }
 
-    public setDirecciones(adress: string): void {
+    public setDirecciones(adress: direccion): void { //agregar una direccion
         this.direcciones.push(adress);
     }
 
-    public getMails(): string[] {
+    public getMails(): mail[] {
         return this.mails;
     }
 
-    public setMails(correo: string): void {
+    public setMails(correo: mail): void { //agregar un mail
         this.mails.push(correo);
     }
 
-    public getTelefono(): number[] {
+    public getTelefono(): telefono[] {
         return this.telefonos;
     }
 
-    public setTelefono(tlf: number): void {
+    public setTelefono(tlf: telefono): void { //agregar un telefono
         this.telefonos.push(tlf);
     }
 
@@ -117,5 +121,21 @@ export class persona{
 
     public setNotas(note: string): void {
         this.notas.push(note);
+    }
+
+    public mostrarDatos(): void {
+        console.log("Información del contacto: \n");
+        console.log("Nombre Completo: " + this.nombre + ' ' + this.apellidos);
+        console.log("Fecha de Nacimiento: " + this.cumpleanyos);
+        console.log("Edad: " + this.edad);
+        console.log("DNI: " + this.dni);
+        console.log("Color favorito: " + this.colorFavorito);
+        console.log("Direcciones: \n");
+        this.direcciones.forEach((direccion) => console.log("Vía: " + direccion.getCalle() + '\n' + "Número: " + direccion.getNumero() + " Letra: " + direccion.getLetra() + " Piso: " + direccion.getPiso() + "\n" + "CP: " + direccion.getCP() + " Población: " + direccion.getPoblacion() + " Provincia: " + direccion.getProv() + "\n"));
+        console.log("Mails: \n");
+        this.mails.forEach((mail) => console.log("Tipo: " + mail.getTipo() + " Correo: " + mail.getDireccion()));
+        console.log("\nTeléfonos:  \n");
+        this.telefonos.forEach((telefono) => console.log("Tipo: " + telefono.getTipo() + " Tlf: " + telefono.getNumero()));
+        console.log("\nNotas: " + this.notas + "\n");
     }
 };
